@@ -24,6 +24,13 @@ pub enum DayPart {
     Part2,
 }
 
+fn day_part_to_str(part: DayPart) -> String {
+    match part {
+        DayPart::Part1 => String::from("part1"),
+        DayPart::Part2 => String::from("part2"),
+    }
+}
+
 fn parse<T: Day + FromStr>(file: &str) -> Result<T>
 where
     <T as FromStr>::Err: Send + Sync + 'static,
@@ -50,7 +57,11 @@ fn solve<T: Day + FromStr>(day: T, part: DayPart) -> Result<()> {
             info!("Part 2 answer is: {}", result);
         }
     }
-    debug!("Parsing took: {}ms", time_tracker.elapsed().as_millis());
+    debug!(
+        "Solving {} took: {}ms",
+        day_part_to_str(part),
+        time_tracker.elapsed().as_millis()
+    );
     Ok(())
 }
 
