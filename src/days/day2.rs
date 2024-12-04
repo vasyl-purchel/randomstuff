@@ -133,6 +133,7 @@ impl FromStr for Day2 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use test::Bencher;
 
     const TEST_INPUT: &str = "\
         7 6 4 2 1
@@ -185,5 +186,15 @@ mod tests {
         let result = day.part2()?;
         assert_eq!(result, 5);
         Ok(())
+    }
+
+    #[bench]
+    fn bench_part1(b: &mut Bencher) {
+        b.iter(|| TEST_INPUT.parse::<Day2>().unwrap().part1().unwrap());
+    }
+
+    #[bench]
+    fn bench_part2(b: &mut Bencher) {
+        b.iter(|| TEST_INPUT.parse::<Day2>().unwrap().part1().unwrap());
     }
 }

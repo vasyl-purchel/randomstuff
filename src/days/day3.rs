@@ -86,6 +86,7 @@ impl FromStr for Day3 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use test::Bencher;
 
     const TEST_INPUT: &str =
         "xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))";
@@ -106,5 +107,15 @@ mod tests {
         let result = day.part2()?;
         assert_eq!(result, 48);
         Ok(())
+    }
+
+    #[bench]
+    fn bench_part1(b: &mut Bencher) {
+        b.iter(|| TEST_INPUT.parse::<Day3>().unwrap().part1().unwrap());
+    }
+
+    #[bench]
+    fn bench_part2(b: &mut Bencher) {
+        b.iter(|| TEST_INPUT_2.parse::<Day3>().unwrap().part1().unwrap());
     }
 }
